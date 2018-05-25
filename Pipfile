@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 shapely = "*"
 pandas = "*"
+pyshp = "*"
+requests = "*"
 
 [dev-packages]
 

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from ftplib import FTP, all_errors
-import tempfile
 from .utils import get_file_date
 
 
@@ -9,7 +8,7 @@ HOSTNAME = 'ftp.cpc.ncep.noaa.gov'
 FILE_DIRECTORY = '/GIS/us_tempprcpfcst/'
 
 class NOAA:
-    def __init__(self, forecast_type = 'temp', forecast_date=None):
+    def __init__(self, forecast_type = 'temp'):
         '''
         Gets seasonal forecast by type
         1: temp will get the tempreature (defualt)
@@ -18,25 +17,19 @@ class NOAA:
         Forecast Date = None, will get the latest
         '''
         assert forecast_type in ['temp', 'prcp']
-        self.forecast_type  = forecast_type
-        self.forecast_date  = forecast_date
+        self.forecast_type  = 'seas' + forecast_type
 
-    def get_file(self):
-        filname_pattern = 'seas' + self.forecast_type + '_*'
+    def get_latest_file_url(self):
+        filname_pattern =  self.forecast_type + '_*'
         with FTP(HOSTNAME) as ftp:
             try:
                 ftp.login()
                 ftp.cwd(FILE_DIRECTORY)
-                if not self.forecast_date:
-                    file_date = max([get_file_date(fl) for fl in ftp.nlst(filname_pattern)])
-                    setattr(self, 'file_date', file_date)
-                else:
-                    file_date = self.forecast_date
-                    setattr(self, 'file_date', file_date)
+                file_date = max([get_file_date(fl) for fl in ftp.nlst(filname_pattern)])
+                setattr(self, 'file_date', file_date)
                 file_name = self.forecast_type + '_' + str(file_date) + '.zip'
                 setattr(self, 'file_name', file_name)
-                temp_file = tempfile.TemporaryFile()
-                file_binary = ftp.retrbinary(f'RETR {file_name}', temp_file.write)
+                file_url = 'ftp://' + HOSTNAME + FILE_DIRECTORY + file_name
             except all_errors as e:
                 print('FTP error:', e)
-        return temp_file
+        return file_url

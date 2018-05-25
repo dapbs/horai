@@ -13,7 +13,12 @@ pip install git+https://github.com/dapbs/horai.git
 
 ## Examples
 
-
+```python
+from horai import SeasonalForecast
+import pandas as pd
+s = SeasonalForecast(weather_provider='noaa')
+df = pd.DataFrame(s.get_forecast(-90.3462912,38.6472162))
+```
 
 ## References
 
