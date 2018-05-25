@@ -25,8 +25,11 @@ class NOAA:
             try:
                 ftp.login()
                 ftp.cwd(FILE_DIRECTORY)
-                file_date = max([get_file_date(fl) for fl in ftp.nlst(filname_pattern)])
-                setattr(self, 'file_date', file_date)
+                if not self.forecast_date:
+                    file_date = max([get_file_date(fl) for fl in ftp.nlst(filname_pattern)])
+                    setattr(self, 'file_date', file_date)
+                if self.forecast_date:
+                    file_date = self.forecast_date
                 latest_file_name = self.forecast_type + '_' + str(file_date) + '.zip'
                 setattr(self, 'latest_file_name', latest_file_name)
                 temp_file = tempfile.TemporaryFile()
