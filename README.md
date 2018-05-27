@@ -1,8 +1,15 @@
-# horai
-Horai US Long-term Seasonal Weather Forecast
+horai
+=====
 
-In Greek mythology the Horae or Horai or Hours (Greek "Seasons") were the goddesses of the seasons and the natural portions of time.
-Source: https://en.wikipedia.org/wiki/Horae
+
+
+
+
+[![Build Status](https://api.travis-ci.org/dapbs/horai.png)](https://travis-ci.org/dapbs/horai)
+
+`horai` is a Python interface for National Oceanic and Atmospheric Administration's (NOAA) U.S. Temperature and Precipitation Seasonal (long-term) Weather Outlooks (Forecasts) which are natively provided as [.shp and .kmz](http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/us_tempprcpfcst/seasonal.php) files via FTP.
+
+In Greek mythology the [Horae or Horai or Hours](https://en.wikipedia.org/wiki/Horae) (Greek "Seasons") were the goddesses of the seasons and the natural portions of time.
 
 
 ## Installation
