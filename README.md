@@ -75,14 +75,14 @@ r.fields
  ['Valid_Seas', 'C', 254, 0],
  ['Prob', 'F', 13, 11],
  ['Cat', 'C', 254, 0]]
- 
+
  r.numRecords
  #The number (and content) of records varies between "leads"
- 
+
  11
- 
+
  r.records()
- 
+
  [[datetime.date(2018, 5, 17), 'JAS 2018', 33.0, 'Above'],
  [datetime.date(2018, 5, 17), 'JAS 2018', 33.0, 'Above'],
  [datetime.date(2018, 5, 17), 'JAS 2018', 33.0, 'Above'],
@@ -94,7 +94,7 @@ r.fields
  [datetime.date(2018, 5, 17), 'JAS 2018', 33.0, 'Below'],
  [datetime.date(2018, 5, 17), 'JAS 2018', 40.0, 'Below'],
  [datetime.date(2018, 5, 17), 'JAS 2018', 33.0, 'EC']]
- 
+
  r.bbox
  #As expected, the bounding box for the shapefile is that of the U.S.
 [-178.2175983623659, 18.921786345087078, -66.96927125875779, 71.40623539396705]
@@ -114,6 +114,6 @@ len(r.shapes())
 * [http://www.cpc.ncep.noaa.gov/products/forecasts/](http://www.cpc.ncep.noaa.gov/products/forecasts/)
 * [http://www.cpc.ncep.noaa.gov/products/predictions/90day/](http://www.cpc.ncep.noaa.gov/products/predictions/90day/)
 * [http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/us_tempprcpfcst/seasonal.php](http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/us_tempprcpfcst/seasonal.php)
-* ftp://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/
+* [ftp://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/](http://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/)
 * [Shapely](https://github.com/Toblerity/Shapely)
 * [pyshp](https://github.com/GeospatialPython/pyshp)
