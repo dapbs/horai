@@ -29,9 +29,11 @@ class SeasonalForecast:
     def get_forecast(self, lon, lat):
         weather_data = self.get_noaa_data()
         point = Point(lon, lat)
+        records = []
         for p in weather_data:
             for sh in range(len(p.shapes())):
                 polygon = shape(p.shapes()[sh])
-                record = p.records()
+                record = p.records()[sh]
                 if polygon.contains(point):
-                    return record
+                    records.append(record)
+        return records
