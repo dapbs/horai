@@ -22,7 +22,7 @@ Each month a new ZIP archive is added to the FTP server containing 14 consecutiv
 
 |Lead Number    |Months                 |
 |:----------|:---------------------------|
-|1 |(February 2018, March 2018, April 2018        |
+|1 |February 2018, March 2018, April 2018        |
 |2 |March 2018, April 2018, May 2018        |
 |3 |April 2018, May 2018, June 2018        |
 |... |...        |
