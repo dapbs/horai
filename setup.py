@@ -3,8 +3,8 @@ import re
 from setuptools import setup
 import sys
 
-assert sys.version_info >= (3, 6, 0), "black requires Python 3.6+"
-from pathlib import Path  # noqa E402
+assert sys.version_info >= (3, 6, 0)
+from pathlib import Path
 
 CURRENT_DIR = Path(__file__).parent
 
