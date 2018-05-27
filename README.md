@@ -7,11 +7,21 @@ horai
 
 [![Build Status](https://api.travis-ci.org/dapbs/horai.png)](https://travis-ci.org/dapbs/horai)
 
-`horai` is a Python interface for National Oceanic and Atmospheric Administration's (NOAA) U.S. Temperature and Precipitation Seasonal (long-term) Weather Outlooks (forecasts) which are natively provided as .shp and .kmz files via [Web](http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/us_tempprcpfcst/seasonal.php) and [FTP](ftp://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/).
+`horai` is a Python interface for National Oceanic and Atmospheric Administration's (NOAA) U.S. Temperature and Precipitation Seasonal (long-term) Weather Outlooks (forecasts) which are natively provided as .shp and .kmz files via [Web](http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/us_tempprcpfcst/seasonal.php) and [FTP](http://ftp://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/).
 
 The focus of this interface is to simplify access to this geographic dataset through Python. It further assists in coverting it to a tabular format for specific Latitude/Longitude pairs.
 
 In Greek mythology the [Horae or Horai or Hours](https://en.wikipedia.org/wiki/Horae) (Greek "Seasons") were the goddesses of the seasons and the natural portions of time.
+
+## Functionality
+
+`horai` retrieves the most current ZIP archive from NOAA's FTP, decompresses it and uses [pyshp](https://github.com/GeospatialPython/pyshp) to read each of the 14 ESRI Shapefiles (.shp). Optionally, a past Year/Month can be specified to retrieve a specific outlook (historical) instance.
+
+[shapely](https://github.com/Toblerity/Shapely) is used to retrieve the outlook values for specific latitude/longitude pairs.
+
+TO-DOs include:
+* Geocoding support
+* Blended results for political boundaries such as states
 
 ## About the NOAA U.S. Temperature and Precipitation Seasonal Weather Outlooks Dataset
 
@@ -55,9 +65,55 @@ s = SeasonalForecast(weather_provider='noaa')
 df = pd.DataFrame(s.get_forecast(-90.3462912,38.6472162))
 ```
 
+```
+r.fields
+
+#The field definition does not change between "leads"
+
+[('DeletionFlag', 'C', 1, 0),
+ ['Fcst_Date', 'D', 8, 0],
+ ['Valid_Seas', 'C', 254, 0],
+ ['Prob', 'F', 13, 11],
+ ['Cat', 'C', 254, 0]]
+ 
+ r.numRecords
+ #The number (and content) of records varies between "leads"
+ 
+ 11
+ 
+ r.records()
+ 
+ [[datetime.date(2018, 5, 17), 'JAS 2018', 33.0, 'Above'],
+ [datetime.date(2018, 5, 17), 'JAS 2018', 33.0, 'Above'],
+ [datetime.date(2018, 5, 17), 'JAS 2018', 33.0, 'Above'],
+ [datetime.date(2018, 5, 17), 'JAS 2018', 33.0, 'Above'],
+ [datetime.date(2018, 5, 17), 'JAS 2018', 40.0, 'Above'],
+ [datetime.date(2018, 5, 17), 'JAS 2018', 40.0, 'Above'],
+ [datetime.date(2018, 5, 17), 'JAS 2018', 40.0, 'Above'],
+ [datetime.date(2018, 5, 17), 'JAS 2018', 40.0, 'Above'],
+ [datetime.date(2018, 5, 17), 'JAS 2018', 33.0, 'Below'],
+ [datetime.date(2018, 5, 17), 'JAS 2018', 40.0, 'Below'],
+ [datetime.date(2018, 5, 17), 'JAS 2018', 33.0, 'EC']]
+ 
+ r.bbox
+ #As expected, the bounding box for the shapefile is that of the U.S.
+[-178.2175983623659, 18.921786345087078, -66.96927125875779, 71.40623539396705]
+
+r.shapeType
+#As expected, the shape type for the shapefile is polygon
+5 #POLYGON
+
+#Like the number of records, the number (and composition) of shapes varies between "leads"
+len(r.shapes())
+11
+```
+
+
 ## References
 
 * [http://www.cpc.ncep.noaa.gov/products/forecasts/](http://www.cpc.ncep.noaa.gov/products/forecasts/)
 * [http://www.cpc.ncep.noaa.gov/products/predictions/90day/](http://www.cpc.ncep.noaa.gov/products/predictions/90day/)
 * [http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/us_tempprcpfcst/seasonal.php](http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/us_tempprcpfcst/seasonal.php)
 * ftp://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/
+* [Shapely](https://github.com/Toblerity/Shapely)
+* [pyshp](https://github.com/GeospatialPython/pyshp)
