@@ -9,6 +9,8 @@ horai
 
 `horai` is a Python interface for National Oceanic and Atmospheric Administration's (NOAA) U.S. Temperature and Precipitation Seasonal (long-term) Weather Outlooks (forecasts) which are natively provided as .shp and .kmz files via [Web](http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/us_tempprcpfcst/seasonal.php) and [FTP](ftp://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/).
 
+The focus of this interface is to simplify access to this geographic dataset through Python. It further assists in coverting it to a tabular format for specific Latitude/Longitude pairs.
+
 In Greek mythology the [Horae or Horai or Hours](https://en.wikipedia.org/wiki/Horae) (Greek "Seasons") were the goddesses of the seasons and the natural portions of time.
 
 ## About the NOAA U.S. Temperature and Precipitation Seasonal Weather Outlooks Dataset
@@ -35,7 +37,7 @@ The ZIP archive includes a .shp file for each lead which in turn includes a seri
 * Above (A) 33~100%
 * Equal Chances (EC): Equal chances for A, N, B
 
-See [long-lead forecast tool discussion and analysis](http://origin.cpc.ncep.noaa.gov/products/predictions/90day/tools.html) for more details on the forecast format.
+For additional detail on the forecast format see [long-lead forecast tool discussion and analysis](http://origin.cpc.ncep.noaa.gov/products/predictions/90day/tools.html).
 
 ## Installation
 
