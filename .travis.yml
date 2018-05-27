@@ -19,5 +19,4 @@ env:
   - PYTHON_VERSION="3.6"
 
 script:
-  - pipenv shell
   - python -c 'from horai import SeasonalForecast;'
