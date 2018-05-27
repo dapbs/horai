@@ -7,7 +7,7 @@ horai
 
 [![Build Status](https://api.travis-ci.org/dapbs/horai.png)](https://travis-ci.org/dapbs/horai)
 
-`horai` is a Python interface for National Oceanic and Atmospheric Administration's (NOAA) U.S. Temperature and Precipitation Seasonal (long-term) Weather Outlooks (forecasts) which are natively provided as .shp and .kmz files via [Web](http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/us_tempprcpfcst/seasonal.php) and [FTP](http://ftp://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/).
+`horai` - pronounced huˈreɪ, as in "Hip, hip... Hooray!" - is a Python interface for National Oceanic and Atmospheric Administration's (NOAA) U.S. Temperature and Precipitation Seasonal (long-term) Weather Outlooks (forecasts) which are natively provided as .shp and .kmz files via [Web](http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/us_tempprcpfcst/seasonal.php) and [FTP](http://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/).
 
 The focus of this interface is to simplify access to this geographic dataset through Python. It further assists in coverting it to a tabular format for specific Latitude/Longitude pairs.
 

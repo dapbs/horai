@@ -15,18 +15,10 @@ def get_long_description() -> str:
         return ld_file.read()
 
 
-def get_version() -> str:
-    black_py = CURRENT_DIR / "black.py"
-    _version_re = re.compile(r"__version__\s+=\s+(?P<version>.*)")
-    with open(black_py, "r", encoding="utf8") as f:
-        match = _version_re.search(f.read())
-        version = match.group("version") if match is not None else '"unknown"'
-    return str(ast.literal_eval(version))
-
 
 setup(
     name="black",
-    version=get_version(),
+    version="0.1",
     description="Python interface for National Oceanic and Atmospheric Administration's  \
          (NOAA) U.S. Temperature and Precipitation Seasonal (long-term) Weather Outlooks (forecasts)",
     long_description=get_long_description(),
