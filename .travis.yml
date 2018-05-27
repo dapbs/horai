@@ -5,7 +5,7 @@ python:
   - "3.6"
 
 install:
-  - pip intsall pipenv
+  - pip install pipenv
   - pipenv install
 
 os:
