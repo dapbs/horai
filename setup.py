@@ -14,10 +14,8 @@ def get_long_description() -> str:
     with open(readme_md, encoding="utf8") as ld_file:
         return ld_file.read()
 
-
-
 setup(
-    name="black",
+    name="horai",
     version="0.1",
     description="Python interface for National Oceanic and Atmospheric Administration's  \
          (NOAA) U.S. Temperature and Precipitation Seasonal (long-term) Weather Outlooks (forecasts)",
