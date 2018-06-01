@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from ftplib import FTP, all_errors
-from .utils import get_file_date
-
+from .utils import get_file_date, AddMonths
+import datetime
 
 HOSTNAME = 'ftp.cpc.ncep.noaa.gov'
 FILE_DIRECTORY = '/GIS/us_tempprcpfcst/'
@@ -30,10 +30,12 @@ class NOAA:
                     file_date = self.forecast_date
                 else:
                     file_date = max([get_file_date(fl) for fl in ftp.nlst(filname_pattern)])
+                start_date = datetime.datetime.strptime(str(file_date), '%Y%m')
+                end_date = AddMonths(start_date,3)
                 setattr(self, 'file_date', file_date)
                 file_name = self.forecast_type + '_' + str(file_date) + '.zip'
                 setattr(self, 'file_name', file_name)
                 file_url = 'ftp://' + HOSTNAME + FILE_DIRECTORY + file_name
             except all_errors as e:
                 print('FTP error:', e)
-        return file_url
+        return file_url,start_date,end_date
