@@ -8,7 +8,7 @@ HOSTNAME = 'ftp.cpc.ncep.noaa.gov'
 FILE_DIRECTORY = '/GIS/us_tempprcpfcst/'
 
 class NOAA:
-    def __init__(self, forecast_type = 'temp'):
+    def __init__(self, forecast_type = 'temp', forecast_date = None):
         '''
         Gets seasonal forecast by type
         1: temp will get the tempreature (defualt)
@@ -25,7 +25,10 @@ class NOAA:
             try:
                 ftp.login()
                 ftp.cwd(FILE_DIRECTORY)
-                file_date = max([get_file_date(fl) for fl in ftp.nlst(filname_pattern)])
+                if forecast_date:
+                    file_date = forecast_date
+                else:
+                    file_date = max([get_file_date(fl) for fl in ftp.nlst(filname_pattern)])
                 setattr(self, 'file_date', file_date)
                 file_name = self.forecast_type + '_' + str(file_date) + '.zip'
                 setattr(self, 'file_name', file_name)
