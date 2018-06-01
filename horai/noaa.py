@@ -8,16 +8,17 @@ HOSTNAME = 'ftp.cpc.ncep.noaa.gov'
 FILE_DIRECTORY = '/GIS/us_tempprcpfcst/'
 
 class NOAA:
-    def __init__(self, forecast_type = 'temp', forecast_date = None):
+    def __init__(self, forecast_type, forecast_date = None):
         '''
         Gets seasonal forecast by type
-        1: temp will get the tempreature (defualt)
-        2: percp will get percp
+        1: temp will get the temperature (default)
+        2: prcp will get percipitation
 
         Forecast Date = None, will get the latest
         '''
         assert forecast_type in ['temp', 'prcp']
         self.forecast_type  = 'seas' + forecast_type
+        self.forecast_date = forecast_date
 
     def get_latest_file_url(self):
         filname_pattern =  self.forecast_type + '_*'
@@ -25,8 +26,8 @@ class NOAA:
             try:
                 ftp.login()
                 ftp.cwd(FILE_DIRECTORY)
-                if forecast_date:
-                    file_date = forecast_date
+                if self.forecast_date:
+                    file_date = self.forecast_date
                 else:
                     file_date = max([get_file_date(fl) for fl in ftp.nlst(filname_pattern)])
                 setattr(self, 'file_date', file_date)

@@ -7,13 +7,15 @@ from zipfile import ZipFile
 
 
 class SeasonalForecast:
-    def __init__(self, weather_provider='noaa'):
+    def __init__(self, weather_provider='noaa', forecast_type = 'temp', forecast_date = None):
 
         assert weather_provider in ['noaa','weather']
         self.weather_provider = weather_provider
+        self.forecast_date = forecast_date
+        self.forecast_type = forecast_type
 
     def get_noaa_data(self):
-        url =  NOAA().get_latest_file_url()
+        url =  NOAA(forecast_type = self.forecast_type, forecast_date = self.forecast_date).get_latest_file_url()
         response = urllib.request.urlopen(url).read()
         noaa_files = ZipFile(io.BytesIO(response))
         list_of_shps = sorted([fil for fil in noaa_files.namelist() if fil.endswith('.shp')])
